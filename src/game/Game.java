@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
-
+import sprite.*;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private BufferedImage image=new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 	//private int pixels =((DataBufferInt)image.getRaster().getDataBuffer()).getDataType();	
-
+  private Sprite sprite1= new Sprite("/gameArt/character/mainguy.png");
 	public Game() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
