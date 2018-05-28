@@ -11,6 +11,10 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import gfx.Screen;
+import gfx.SpriteSheet;
+
+
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +31,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private BufferedImage image = new BufferedImage(WIDTH,HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+
+	private Screen screen;
 
 	public Game() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -47,6 +53,10 @@ public class Game extends Canvas implements Runnable {
 
 	}
 
+	public void init(){
+		screen= new Screen(WIDTH,HEIGHT,new SpriteSheet("/sprite_sheet.png"));
+	}
+
 	public synchronized void start() {
 		running = true;
 		new Thread(this).start();
@@ -65,6 +75,8 @@ public class Game extends Canvas implements Runnable {
 
 		long lastTimer = System.currentTimeMillis();
 		double delta = 0;
+
+		init();
 
 		while (running) {
 			long now = System.nanoTime();
@@ -102,9 +114,10 @@ public class Game extends Canvas implements Runnable {
 
 	public void tick() {
 		tickCount++;
-		for(int i = 0; i < pixels.length; i++) {
-			pixels[i] = i + tickCount;
-		}
+		screen.xOffset++;
+//		for(int i = 0; i < pixels.length; i++) {
+//			pixels[i] = i + tickCount;
+//		}
 	}
 
 	public void render() {
@@ -113,6 +126,8 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
+
+		screen.render(pixels, 0, WIDTH);
 		
 		Graphics g=bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
