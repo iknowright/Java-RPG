@@ -1,1 +1,7 @@
 /bin/
+
+# macOs file
+.DS_Store
+
+# res 
+res/
