@@ -89,14 +89,13 @@ public class Game extends Canvas implements Runnable {
 				tick();
 				delta -= 1;
 				shouldRender = true;
-			}
-/*			
+			}		
 			try {
 				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-*/			
+		
 			if (shouldRender) {
 				frames++;
 				render();
@@ -115,9 +114,6 @@ public class Game extends Canvas implements Runnable {
 	public void tick() {
 		tickCount++;
 		screen.xOffset++;
-//		for(int i = 0; i < pixels.length; i++) {
-//			pixels[i] = i + tickCount;
-//		}
 	}
 
 	public void render() {
