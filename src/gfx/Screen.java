@@ -36,7 +36,7 @@ public class Screen {
 			if(yMin<0)yMin=0;
 			if(yMax>height)yMax=height;
 
-			for(int xTile=xOffset>>3;xTile<=(xOffset+height)>>3;xTile++){
+			for(int xTile=xOffset>>3;xTile<=(xOffset+width)>>3;xTile++){
 				int xMin=xTile*8-xOffset;
 				int xMax=xMin+8;
 				if(xMin<0)xMin=0;
