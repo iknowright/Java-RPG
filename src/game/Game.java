@@ -3,6 +3,7 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -10,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
-import sprite.*;
+
 
 import gfx.Screen;
 import gfx.SpriteSheet;
@@ -34,6 +35,9 @@ public class Game extends Canvas implements Runnable {
 
 	private Screen screen;
 	public InputHandler input;
+	
+	// dialog
+	public static Dialog dialog;
 
 	public Game() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -44,12 +48,19 @@ public class Game extends Canvas implements Runnable {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
-
+		//frame.setLayout(null);
 		frame.add(this, BorderLayout.CENTER);
+		//frame.add(this);
 		frame.pack();
-
+		//Container contentPane = frame.getContentPane();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		
+		// init dialog
+		dialog=new Dialog();
+		frame.add(dialog.panel,BorderLayout.SOUTH);
+		//contentPane.add(dialog.panel, BorderLayout.SOUTH);
+		
 		frame.setVisible(true);
 
 	}
@@ -57,6 +68,8 @@ public class Game extends Canvas implements Runnable {
 	public void init(){
 		screen= new Screen(WIDTH,HEIGHT,new SpriteSheet("/sprite_sheet.png"));
 		input = new InputHandler(this);
+		
+		
 	}
 
 	public synchronized void start() {
