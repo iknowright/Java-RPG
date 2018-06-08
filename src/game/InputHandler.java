@@ -46,19 +46,19 @@ public class InputHandler implements KeyListener{
 	 */
 	public void toggleKey(int keyCode, boolean pressStatus)
 	{
-		if(keyCode == KeyEvent.VK_W)
+		if(keyCode == KeyEvent.VK_W||keyCode==KeyEvent.VK_UP)
 		{
 			up.setPressed(pressStatus);
 		}
-		if(keyCode == KeyEvent.VK_A)
+		if(keyCode == KeyEvent.VK_A||keyCode==KeyEvent.VK_LEFT)
 		{
 			left.setPressed(pressStatus);
 		}
-		if(keyCode == KeyEvent.VK_S)
+		if(keyCode == KeyEvent.VK_S||keyCode==KeyEvent.VK_DOWN)
 		{
 			down.setPressed(pressStatus);
 		}
-		if(keyCode == KeyEvent.VK_D)
+		if(keyCode == KeyEvent.VK_D||keyCode==KeyEvent.VK_RIGHT)
 		{
 			right.setPressed(pressStatus);
 		}
