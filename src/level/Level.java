@@ -41,13 +41,13 @@ public class Level {
 			yOffset = (height*8 - screen.height);
 		}
 		
-		screen.setOffset(xOffset, yOffset);
+		//screen.setOffset(xOffset, yOffset);
 		
 		for(int y=0; y<height; y++)
 		{
 			for(int x=0; x<width; x++)
 			{
-				getTile(x,y).render(screen, this, x*8, y*8);
+				//getTile(x,y).render(screen, this, x*8, y*8);
 			}
 		}
 		
@@ -59,18 +59,18 @@ public class Level {
 		{
 			for(int j=0;j<width;j++)
 			{
-				tiles[j+i*width] = Tile.GRASS.getID();
+				//tiles[j+i*width] = Tile.GRASS.getID();
 			}
 		}
 	}
 	
-	private Tile getTile(int x, int y)
+	/*private Tile getTile(int x, int y)
 	{
 		if(x<0||x>width||y<0||y>height)
 		{
 			return Tile.VOID;
 		}
 		return Tile.tiles[tiles[x+y*width]];
-	}
+	}*/
 
 }
