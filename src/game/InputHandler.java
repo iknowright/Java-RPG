@@ -25,6 +25,7 @@ public class InputHandler implements KeyListener{
 	public Key left = new Key();
 	public Key down = new Key();
 	public Key right = new Key();
+	public Key interact = new Key();
 	
 	public void keyPressed(KeyEvent e)
 	{
@@ -61,6 +62,10 @@ public class InputHandler implements KeyListener{
 		if(keyCode == KeyEvent.VK_D||keyCode==KeyEvent.VK_RIGHT)
 		{
 			right.setPressed(pressStatus);
+		}
+		if(keyCode == KeyEvent.VK_E)
+		{
+			interact.setPressed(pressStatus);
 		}
 	}
 }
