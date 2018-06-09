@@ -3,6 +3,8 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -38,6 +40,9 @@ public class Game extends Canvas implements Runnable {
 	
 	private Screen screen;
 	public InputHandler input;
+	
+	// dialog
+	public static Dialog dialog;
 
 	public Game() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -48,12 +53,19 @@ public class Game extends Canvas implements Runnable {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
-
+		//frame.setLayout(null);
 		frame.add(this, BorderLayout.CENTER);
+		//frame.add(this);
 		frame.pack();
-
+		//Container contentPane = frame.getContentPane();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		
+		// init dialog
+		dialog=new Dialog();
+		frame.add(dialog.panel,BorderLayout.SOUTH);
+		//contentPane.add(dialog.panel, BorderLayout.SOUTH);
+		
 		frame.setVisible(true);
 
 	}
@@ -75,6 +87,8 @@ public class Game extends Canvas implements Runnable {
 		
 		screen= new Screen(WIDTH,HEIGHT,new SpriteSheet("/sprite_sheet.png"));
 		input = new InputHandler(this);
+		
+		
 	}
 
 	public synchronized void start() {
@@ -150,6 +164,7 @@ public class Game extends Canvas implements Runnable {
 		{
 			screen.xOffset--;
 		}
+		//to interact use input.interact.getPressed() to return if E is pressed.
 	}
 
 	public void render() {
@@ -158,9 +173,13 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
+/*
+<<<<<<< HEAD
 
-
-		for(int y=0;y<32;y++) {
+=======
+		//commented out by tut 8(copied to Level.java)
+>>>>>>> 0e47dd60ec7112bd16c98fdf26172ae70d5d09bb
+*/		for(int y=0;y<32;y++) {
 			for(int x=0;x<32;x++) {
 				boolean flipX=x%2==1;
 				boolean flipY=y%2==1;
@@ -168,6 +187,7 @@ public class Game extends Canvas implements Runnable {
 				screen.render(x<<3, y<<3, 0, Colours.get(555,500,050,005),flipX,flipY);
 			}
 		}
+		//comment to here
 		
 		for(int y=0;y<screen.height;y++) {
 			for(int x=0;x<screen.width;x++) {
