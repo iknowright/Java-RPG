@@ -4,8 +4,6 @@ public class Screen {
 	public static final int MAP_WIDTH=64;
 	public static final int MAP_WIDTH_MASK=MAP_WIDTH-1;
 	
-
-
 	public int[] pixels;
 	
 	public int xOffset=0;
@@ -24,7 +22,9 @@ public class Screen {
 		pixels = new int[width * height];
 	}
 
-
+	public void render(int xPos,int yPos,int tile,int colour) {
+		render(xPos, yPos, tile, colour, false, false);
+	}
 	
 	public void render(int xPos,int yPos,int tile,int colour,boolean mirrorX,boolean mirrorY) {
 		xPos-=xOffset;
@@ -46,7 +46,7 @@ public class Screen {
 			}
 		}
 	}
-	
+/*	
 	public void render(int xPos, int yPos, int tile, int color) {
 		xPos -= xOffset;
 		yPos -= yOffset;
@@ -65,5 +65,11 @@ public class Screen {
 				if(col < 255) pixels[(x + xPos) + (y + yPos) * width] = col;
 			}
 		}
+	}
+*/
+
+	public void setOffset(int xOffset, int yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 }

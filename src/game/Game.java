@@ -4,19 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.time.Year;
 
 import javax.swing.JFrame;
 
 
 import gfx.Colours;
+import gfx.Font;
 import gfx.Screen;
 import gfx.SpriteSheet;
+import level.Level;
 
 public class Game extends Canvas implements Runnable {
 
@@ -40,6 +42,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private Screen screen;
 	public InputHandler input;
+	
+	public Level level;
 	
 	// dialog
 	public static Dialog dialog;
@@ -87,6 +91,8 @@ public class Game extends Canvas implements Runnable {
 		
 		screen= new Screen(WIDTH,HEIGHT,new SpriteSheet("/sprite_sheet.png"));
 		input = new InputHandler(this);
+		
+		level = new Level(64, 64);
 		
 		
 	}
@@ -145,26 +151,17 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	private int x=0, y=0;
 	public void tick() {
 		tickCount++;
 
-		if(input.up.getPressed())
-		{
-			screen.yOffset--;
-		}
-		if(input.down.getPressed())
-		{
-			screen.yOffset++;
-		}
-		if(input.right.getPressed())
-		{
-			screen.xOffset++;
-		}
-		if(input.left.getPressed())
-		{
-			screen.xOffset--;
-		}
+		if(input.up.getPressed())	y--;
+		if(input.down.getPressed())	y++;
+		if(input.right.getPressed())x++;
+		if(input.left.getPressed())	x--;
 		//to interact use input.interact.getPressed() to return if E is pressed.
+		
+		level.tick();
 	}
 
 	public void render() {
@@ -173,22 +170,31 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-/*
-<<<<<<< HEAD
 
-=======
+		int xOffset = x - (screen.xOffset/2);
+		int yOffset = y - (screen.yOffset/2);
+		
+		level.renderTiles(screen, xOffset, yOffset);
+		
+		for(int x = 0; x < level.width; x++) {
+			int colour = Colours.get(-1, -1, -1, 000);
+			if(x % 10 == 0 && x != 0)	colour = Colours.get(-1, -1, -1, 500);
+		}
 		//commented out by tut 8(copied to Level.java)
->>>>>>> 0e47dd60ec7112bd16c98fdf26172ae70d5d09bb
-*/		for(int y=0;y<32;y++) {
+/*		for(int y=0;y<32;y++) {
 			for(int x=0;x<32;x++) {
 				boolean flipX=x%2==1;
 				boolean flipY=y%2==1;
 				
-				screen.render(x<<3, y<<3, 0, Colours.get(555,500,050,005),flipX,flipY);
+				screen.render(x<<3, y<<3, 0, Colours.get(555,505,055,550),flipX,flipY);
 			}
 		}
+*/
+/*		//Font
+		String msg = "This is our Game!";
+		Font.render(msg, screen, screen.xOffset+screen.width/2-((msg.length()*8)/2), screen.yOffset+screen.height/2, Colours.get(-1, -1, -1, 000));
+*/
 		//comment to here
-		
 		for(int y=0;y<screen.height;y++) {
 			for(int x=0;x<screen.width;x++) {
 				int colourCode=screen.pixels[x+y*screen.width];
