@@ -47,12 +47,12 @@ public class Level {
 		{
 			for(int j=0;j<width;j++)
 			{
-//				if(j * i % 10 < 5) {
+				if(j * i % 10 < 9) {
 					tiles[j+i*width] = Tile.GRASS.getID();
-//				}
-//				else {
-//					tiles[j+i*width] = Tile.STONE.getID();
-//				}
+				}
+				else {
+					tiles[j+i*width] = Tile.STONE.getID();
+				}
 			}
 		}
 	}
