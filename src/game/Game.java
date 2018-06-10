@@ -162,6 +162,7 @@ public class Game extends Canvas implements Runnable {
 		{
 			screen.xOffset--;
 		}
+		//to interact use input.interact.getPressed() to return if E is pressed.
 	}
 
 	public void render() {
@@ -171,6 +172,7 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 
+		//commented out by tut 8(copied to Level.java)
 		for(int y=0;y<32;y++) {
 			for(int x=0;x<32;x++) {
 				boolean flipX=x%2==1;
@@ -179,6 +181,7 @@ public class Game extends Canvas implements Runnable {
 				screen.render(x<<3, y<<3, 0, Colours.get(555,500,050,005),flipX,flipY);
 			}
 		}
+		//comment to here
 		
 		Font.render("Hello World!", screen, 0, 0, Colours.get(000, -1, -1, 555));
 		
