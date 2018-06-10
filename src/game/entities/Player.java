@@ -56,8 +56,8 @@ public class Player extends Mob{
 		// the four corners of the player's collidor box
 		int xMin=0;
 		int xMax=10;
-		int yMin=0;
-		int yMax=18;
+		int yMin=3;
+		int yMax=8;
 		// check 4 edges of the box
 		for(int i=xMin;i<=xMax;i++) {
 			if(isSolidTile(xa,ya,i,yMin))
