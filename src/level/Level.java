@@ -25,7 +25,6 @@ public class Level {
 		if(yOffset<=0)	yOffset = 0;
 		if(yOffset>((height<<3) - screen.height))	yOffset = ((height<<3) - screen.height);
 		
-		
 		screen.setOffset(xOffset, yOffset);
 		
 		for(int y=0; y<height; y++)
