@@ -14,7 +14,7 @@ import java.time.Year;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-
+import game.entities.Player;
 import gfx.Colours;
 import gfx.Font;
 import gfx.Screen;
@@ -45,6 +45,7 @@ public class Game extends Canvas implements Runnable {
 	public InputHandler input;
 	
 	public Level level;
+	public Player player;
 	
 	// dialog
 	public static Dialog dialog;
@@ -93,7 +94,8 @@ public class Game extends Canvas implements Runnable {
 		input = new InputHandler(this);
 		
 		level = new Level(64, 64);
-		
+		player = new Player(level, 0, 0, input);
+		level.addEntity(player);
 		
 	}
 
@@ -151,21 +153,15 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-	private int x=0, y=0;
+//	private int x=0, y=0;
 	public void tick() {
 		tickCount++;
-
+		
 		//to interact use input.interact.getPressed() to return if E is pressed.
 		if(input.interact.getPressed()) {
 			dialog.showDialog("[DEFAULT_MESSAGE]How are u?");
 		}
-
 		
-		//x,y scale times 2
-		if(input.up.getPressed() && y > 0)	y-=2;
-		if(input.down.getPressed() && y < (64<<3)-screen.height)y+=2;
-		if(input.right.getPressed() && x < (64<<3)-screen.width)x+=2;
-		if(input.left.getPressed() && x >0)	x-=2;
 		level.tick();
 
 	}
@@ -176,11 +172,11 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		// 分母調大
-		double xOffset = x - (screen.xOffset/20);
-		double yOffset = y - (screen.yOffset/20);
+		// 嚙踝蕭嚙踝蕭嚙調大
+		double xOffset = player.x - (screen.width/2);
+		double yOffset = player.y - (screen.height/2);
 		level.renderTiles(screen, xOffset, yOffset);
-		
+		level.renderEntities(screen);
 		for(int x = 0; x < level.width; x++) {
 			int colour = Colours.get(-1, -1, -1, 000);
 			if(x % 10 == 0 && x != 0)	colour = Colours.get(-1, -1, -1, 500);
