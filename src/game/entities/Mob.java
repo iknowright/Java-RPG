@@ -1,7 +1,5 @@
 package game.entities;
 
-import org.ietf.jgss.Oid;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import level.Level;
 
