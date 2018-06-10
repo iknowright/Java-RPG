@@ -162,6 +162,9 @@ public class Game extends Canvas implements Runnable {
 			screen.xOffset--;
 		}
 		//to interact use input.interact.getPressed() to return if E is pressed.
+		if(input.interact.getPressed()) {
+			dialog.showDialog("Change successful!");
+		}
 	}
 
 	public void render() {
