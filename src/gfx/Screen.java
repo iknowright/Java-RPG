@@ -6,8 +6,8 @@ public class Screen {
 	
 	public int[] pixels;
 	
-	public int xOffset=0;
-	public int yOffset=0;
+	public double xOffset=0;
+	public double yOffset=0;
 	 
 	public int width;
 	public int height;
@@ -68,7 +68,7 @@ public class Screen {
 	}
 */
 
-	public void setOffset(int xOffset, int yOffset) {
+	public void setOffset(double xOffset, double yOffset) {
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 	}

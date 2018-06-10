@@ -108,7 +108,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void run() {
 		long lastTime = System.nanoTime();
-		double nsPerTick = 1000000000D / 60D;
+		double nsPerTick = 1000000000D / 30D;
 
 		int ticks = 0;
 		int frames = 0;
@@ -159,6 +159,8 @@ public class Game extends Canvas implements Runnable {
 		if(input.down.getPressed())	y++;
 		if(input.right.getPressed())x++;
 		if(input.left.getPressed())	x--;
+		
+		
     //to interact use input.interact.getPressed() to return if E is pressed.
     if(input.interact.getPressed()) dialog.showDialog("Change successful!");
 		level.tick();
@@ -171,8 +173,8 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 
-		int xOffset = x - (screen.xOffset/2);
-		int yOffset = y - (screen.yOffset/2);
+		double xOffset = x - (screen.xOffset/10);
+		double yOffset = y - (screen.yOffset/10);
 		
 		level.renderTiles(screen, xOffset, yOffset);
 		
