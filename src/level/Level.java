@@ -1,15 +1,19 @@
 package level;
-import java.awt.image.TileObserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+import game.entities.Entity;
 import gfx.Screen;
 import level.tiles.Tile;
-
 
 public class Level {
 	
 	public int height;
 	public int width;
 	private byte[] tiles;
+	public List<Entity> entities = new ArrayList<Entity>();
 	
 	public Level(int height, int width)
 	{
@@ -43,12 +47,12 @@ public class Level {
 		{
 			for(int j=0;j<width;j++)
 			{
-				if(j * i % 10 < 5) {
+//				if(j * i % 10 < 5) {
 					tiles[j+i*width] = Tile.GRASS.getID();
-				}
-				else {
-					tiles[j+i*width] = Tile.STONE.getID();
-				}
+//				}
+//				else {
+//					tiles[j+i*width] = Tile.STONE.getID();
+//				}
 			}
 		}
 	}
@@ -60,6 +64,18 @@ public class Level {
 	}
 
 	public void tick() {
-		
+		for(Entity e: entities) {
+			e.tick();
+		}
+	}
+	
+	public void renderEntities(Screen screen) {
+		for(Entity e: entities) {
+			e.render(screen);
+		}
+	}
+	
+	public void addEntity(Entity entity) {
+		this.entities.add(entity);
 	}
 }
