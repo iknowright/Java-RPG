@@ -154,12 +154,12 @@ public class Game extends Canvas implements Runnable {
 	private int x=0, y=0;
 	public void tick() {
 		tickCount++;
-
-		if(input.up.getPressed())	y--;
-		if(input.down.getPressed())	y++;
-		if(input.right.getPressed())x++;
-		if(input.left.getPressed())	x--;
 		
+		//x,y scale times 2
+		if(input.up.getPressed() && y > 0)	y-=2;
+		if(input.down.getPressed() && y < (64<<3)-screen.height)y+=2;
+		if(input.right.getPressed() && x < (64<<3)-screen.width)x+=2;
+		if(input.left.getPressed() && x >0)	x-=2;
 		
     //to interact use input.interact.getPressed() to return if E is pressed.
     if(input.interact.getPressed()) dialog.showDialog("Change successful!");
@@ -172,10 +172,9 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-
-		double xOffset = x - (screen.xOffset/10);
-		double yOffset = y - (screen.yOffset/10);
-		
+		// ¤À¥À½Õ¤j
+		double xOffset = x - (screen.xOffset/20);
+		double yOffset = y - (screen.yOffset/20);
 		level.renderTiles(screen, xOffset, yOffset);
 		
 		for(int x = 0; x < level.width; x++) {
