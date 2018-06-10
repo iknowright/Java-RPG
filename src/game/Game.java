@@ -151,15 +151,15 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-	private int x=0, y=0;
+//	private int x=0, y=0;
 	public void tick() {
 		tickCount++;
-
+/*
 		if(input.up.getPressed())	y--;
 		if(input.down.getPressed())	y++;
 		if(input.right.getPressed())x++;
 		if(input.left.getPressed())	x--;
-		
+*/		
 		
     //to interact use input.interact.getPressed() to return if E is pressed.
     if(input.interact.getPressed()) dialog.showDialog("Change successful!");
