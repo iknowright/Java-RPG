@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,6 +21,7 @@ public class Dialog {
 		panel.setBackground(Color.yellow);
 		textbox = new JLabel("Hi, I am NPC!",JLabel.LEFT);
 		panel.add(textbox);
+		
 		//textbox.setText("Hi, I am NPC!");
 		//textbox.setMinimumSize(new Dimension(width, height));
 		//textbox.setPreferredSize();
@@ -30,7 +30,7 @@ public class Dialog {
 	
 	// show
 	public void showDialog(String msg) {
-		
+		textbox.setText(msg);
 	}
 	
 	// hide
