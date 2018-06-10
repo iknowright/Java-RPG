@@ -178,12 +178,13 @@ public class Game extends Canvas implements Runnable {
 				boolean flipX=x%2==1;
 				boolean flipY=y%2==1;
 				
-				screen.render(x<<3, y<<3, 0, Colours.get(555,500,050,005),flipX,flipY);
+				screen.render(x<<3, y<<3, 0, Colours.get(555,505,550,055),flipX,flipY);
 			}
 		}
 		//comment to here
 		
-		Font.render("Hello World!", screen, 0, 0, Colours.get(000, -1, -1, 555));
+		String msg="This is our game!";
+		Font.render(msg, screen, screen.xOffset+screen.width/2-(msg.length()*8/2), screen.yOffset+screen.height/2, Colours.get(-1, -1, -1, 000));
 		
 		for(int y=0;y<screen.height;y++) {
 			for(int x=0;x<screen.width;x++) {
