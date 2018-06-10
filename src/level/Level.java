@@ -19,7 +19,7 @@ public class Level {
 		this.generateLevel();
 	}
 	
-	public void renderTiles(Screen screen, int xOffset, int yOffset){
+	public void renderTiles(Screen screen, double xOffset, double yOffset){
 		if(xOffset<=0)	xOffset = 0;
 		if(xOffset>((width<<3) - screen.width))	xOffset = ((width<<3) - screen.width);
 		if(yOffset<=0)	yOffset = 0;
