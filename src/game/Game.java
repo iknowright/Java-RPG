@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.time.Year;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 
@@ -64,10 +65,9 @@ public class Game extends Canvas implements Runnable {
 		//Container contentPane = frame.getContentPane();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		
 		// init dialog
-		dialog=new Dialog();
-		frame.add(dialog.panel,BorderLayout.SOUTH);
+		dialog=new Dialog(frame.getLayeredPane());
+		//frame.add(dialog.panel,BorderLayout.SOUTH);
 		//contentPane.add(dialog.panel, BorderLayout.SOUTH);
 		
 		frame.setVisible(true);
@@ -154,16 +154,20 @@ public class Game extends Canvas implements Runnable {
 	private int x=0, y=0;
 	public void tick() {
 		tickCount++;
+
+		//to interact use input.interact.getPressed() to return if E is pressed.
+		if(input.interact.getPressed()) {
+			dialog.showDialog("[DEFAULT_MESSAGE]How are u?");
+		}
+
 		
 		//x,y scale times 2
 		if(input.up.getPressed() && y > 0)	y-=2;
 		if(input.down.getPressed() && y < (64<<3)-screen.height)y+=2;
 		if(input.right.getPressed() && x < (64<<3)-screen.width)x+=2;
 		if(input.left.getPressed() && x >0)	x-=2;
-		
-    //to interact use input.interact.getPressed() to return if E is pressed.
-    if(input.interact.getPressed()) dialog.showDialog("Change successful!");
 		level.tick();
+
 	}
 
 	public void render() {
