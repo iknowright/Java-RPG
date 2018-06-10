@@ -5,9 +5,9 @@ public class Screen {
 	public static final int MAP_WIDTH_MASK=MAP_WIDTH-1;
 	
 	public int[] pixels;
-
-	public int xOffset=0;
-	public int yOffset=0;
+	
+	public double xOffset=0;
+	public double yOffset=0;
 	 
 	public int width;
 	public int height;
@@ -18,8 +18,12 @@ public class Screen {
 		this.width=width;
 		this.height= height;
 		this.sheet=sheet;
-		
-		pixels=new int[height*width];
+
+		pixels = new int[width * height];
+	}
+
+	public void render(int xPos,int yPos,int tile,int colour) {
+		render(xPos, yPos, tile, colour, false, false);
 	}
 	
 	public void render(int xPos,int yPos,int tile,int colour,boolean mirrorX,boolean mirrorY) {
@@ -41,5 +45,10 @@ public class Screen {
 				if(col<255)pixels[(x+xPos)+(y+yPos)*width]=col;
 			}
 		}
+	}
+
+	public void setOffset(double xOffset, double yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 }

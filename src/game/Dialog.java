@@ -6,6 +6,7 @@
  * @since   2018-06-10
  */
 
+
 package game;
 import java.awt.BorderLayout;
 
@@ -29,19 +30,9 @@ public class Dialog{
 	
 	// change position
 	public Dialog(){
+
 		System.out.println("Error! Please send a JLayeredPane to the Dialog class.");
-//		panel = new JPanel();
-//		panel.setPreferredSize(new Dimension(0, height));
-//		panel.setBackground(Color.yellow);
-//	    textbox = new JLabel("Hi, I am NPC!",JLabel.LEFT);
-//		panel.add(textbox);
-		//setPreferredSize(new Dimension(0, height));
-		//JLabel label = createColoredLabel("Yellow (test)",Color.yellow, new Point(10, 20));
-		//add(label, new Integer(4));
-		//textbox.setText("Hi, I am NPC!");
-		//textbox.setMinimumSize(new Dimension(width, height));
-		//textbox.setPreferredSize();
-		//textbox.setMaximumSize(new Dimension(width, height));		
+
 	}
 	
 	public Dialog(JLayeredPane FL)
@@ -61,6 +52,7 @@ public class Dialog{
 	}
 	// show
 	public void showDialog(String msg) {
+
 		textbox.setVisible(true);
 		textbox.setText(msg);
 	}
