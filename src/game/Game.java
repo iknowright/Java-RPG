@@ -159,8 +159,8 @@ public class Game extends Canvas implements Runnable {
 		if(input.down.getPressed())	y++;
 		if(input.right.getPressed())x++;
 		if(input.left.getPressed())	x--;
-		//to interact use input.interact.getPressed() to return if E is pressed.
-		
+    //to interact use input.interact.getPressed() to return if E is pressed.
+    if(input.interact.getPressed()) dialog.showDialog("Change successful!");
 		level.tick();
 	}
 
