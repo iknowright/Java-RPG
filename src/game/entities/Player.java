@@ -15,26 +15,26 @@ public class Player extends Mob{
 		this.input = input;
 	}
 	
-	public boolean hasCollided(int xa, int ya) {
-		
-		
-		return false;
-	}
+	
 	
 	public void tick() {
+		
 		int xa = 0;
 		int ya = 0;
-		
+
+		// player moves
 		if(input.up.getPressed())	ya--;
 		if(input.down.getPressed())	ya++;
 		if(input.right.getPressed())xa++;
 		if(input.left.getPressed())	xa--;
 		
 		if(xa != 0 || ya != 0) {
+			//System.out.println("condition is good!");
 			move(xa, ya);
 			isMoving = true;
 		}
 		else {
+			//System.out.println("condition is not good!");
 			isMoving = false;
 		}
 //		this.scale = 2;		//scale up
@@ -63,6 +63,35 @@ public class Player extends Mob{
 		screen.render(xOffset + modifier - (modifier * flipTop), yOffset, (xTile + 1) + yTile * 32, colour, flipTop, scale);
 		screen.render(xOffset + (modifier * flipBottom), yOffset + modifier, xTile + (yTile + 1) * 32, colour, flipBottom, scale);
 		screen.render(xOffset + modifier - (modifier * flipBottom), yOffset + modifier, (xTile + 1) + (yTile + 1) * 32, colour, flipBottom, scale);		
+	}
+	
+	public boolean hasCollided(int xa,int ya) {
+		// the four corners of the player's collidor box
+		int xMin=0;
+		int xMax=10;
+		int yMin=3;
+		int yMax=8;
+		// check 4 edges of the box
+		for(int i=xMin;i<=xMax;i++) {
+			if(isSolidTile(xa,ya,i,yMin))
+				return true;
+		}
+		
+		for(int i=xMin;i<=xMax;i++) {
+			if(isSolidTile(xa,ya,i,yMax))
+				return true;
+		}
+		
+		for(int i=yMin;i<=yMax;i++) {
+			if(isSolidTile(xa,ya,xMin,i))
+				return true;
+		}
+		
+		for(int i=yMin;i<=yMax;i++) {
+			if(isSolidTile(xa,ya,xMax,i))
+				return true;
+		}
+		return false;
 	}
 
 }
